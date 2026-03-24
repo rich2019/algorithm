@@ -8,6 +8,7 @@ public class Test {
         double c = 400 * 1.5;
         double b = 2000 * 1.1;
         double a = 600;
+
         System.out.println(a + b + c);
 
 
