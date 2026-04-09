@@ -14,7 +14,7 @@ public class ReverseBetween {
         node3.next = node4;
         node4.next = null;
 
-        ListNode reversed = reverseBetween(head, 3, 4);
+        ListNode reversed = reverseBetween(head, 1, 4);
         System.out.println(reversed);
         while (reversed != null) {
             System.out.println(reversed.val);
@@ -24,25 +24,25 @@ public class ReverseBetween {
 
 
     public static ListNode reverseBetween(ListNode head, int left, int right) {
-        ListNode begin = head;
-        ListNode pre = null;
+
+        ListNode dummy = new ListNode(0);
+        dummy.next = head;
+
+        ListNode pre = dummy;
         for (int i = 0; i < left - 1; i++) {
-            if (i == left - 2) {
-                pre = head;
-            }
-            head = head.next;
+            pre = pre.next;
         }
 
-        // 0 1 2 3 4
+        ListNode cur = pre.next;
         for (int i = 0; i < right - left; i++) {
-            ListNode next = head.next;
-            head.next = pre;
-            next.next = head;
-            pre = head;
-            head = next;
+            ListNode next = cur.next;
+
+            cur.next = next.next;
+            next.next = pre.next;
+            pre.next = next;
         }
 
-        return begin;
+        return dummy.next;
     }
 
 
